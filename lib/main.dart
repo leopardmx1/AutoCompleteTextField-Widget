@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 // package:autocompletetxtfield
-import 'package:autocompeletetxtfield/MultiAutoCompleteTxtField.dart';
+import 'package:autocompletetxtfield/MultiAutoCompleteTxtField.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
