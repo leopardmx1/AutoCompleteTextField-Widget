@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:autocompeletetxtfield/autocompeletetxtfield.dart';
+// package:autocompletetxtfield
+import 'package:autocompeletetxtfield/MultiAutoCompleteTxtField.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  List<String> countries;
+  List<String>? countries;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -16,7 +17,7 @@ class MainPage extends StatefulWidget {
   _MainState createState() => _MainState();
 }
 class _MainState extends State<MainPage> {
-  List<String> countries;
+  List<String>? countries;
   var width,hight;
   var clr;
   var currItem = 0;
@@ -293,7 +294,7 @@ class _MainState extends State<MainPage> {
     );
   }
   ListView lstView() => ListView.builder(
-    itemCount: countries.length,
+    itemCount: countries!.length,
     padding: EdgeInsets.only(top: 80),
     controller: scrollcontroller,
     itemBuilder: (context,index) => Card(
@@ -303,7 +304,7 @@ class _MainState extends State<MainPage> {
         onTap: (){
           print(scrollcontroller.offset);
         },
-        title: Text(countries[index]),
+        title: Text(countries![index]),
       ),
     )
   );
@@ -314,7 +315,7 @@ class _MainState extends State<MainPage> {
     child: Stack(
       alignment: Alignment.center,
       children: <Widget>[
-        AutoCompeleteTextField(
+        AutoCompleteTextField(
           suggestions: countries,
           collapsed: false,
           listElevation: 5.0,
@@ -328,7 +329,7 @@ class _MainState extends State<MainPage> {
             fillColor: Colors.white,
           ),
           onTextSubmited: (value){
-            var index=countries.indexOf(value);
+            var index=countries!.indexOf(value);
             scrollcontroller.animateTo(index*61.0,
                 duration: Duration(seconds: 1),
                 curve: Curves.fastOutSlowIn).then((val){

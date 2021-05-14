@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:testapp/AutoCompeleteTxtField/nonGlow.dart';
+import 'package:autocompeletetxtfield/nonGlow.dart';
 
-class AutoCompeleteTextField extends StatefulWidget {
-  final List<String> suggestions;
+class AutoCompleteTextField extends StatefulWidget {
+  final List<String>? suggestions;
   final decoration;
   final listElevation;
   final width;
   final onTextSubmited;
   final collapsed;
-  AutoCompeleteTextField(
-      {Key key,
-      @required this.suggestions,
+  AutoCompleteTextField(
+      {Key? key,
+      required this.suggestions,
       this.decoration,
       this.listElevation,
       this.width,
-      this.onTextSubmited(String value),
+      required this.onTextSubmited(String value),
       this.collapsed
       });
 
@@ -22,12 +22,12 @@ class AutoCompeleteTextField extends StatefulWidget {
   _MACTextFieldState createState() => _MACTextFieldState();
 }
 
-class _MACTextFieldState extends State<AutoCompeleteTextField> {
+class _MACTextFieldState extends State<AutoCompleteTextField> {
   List<String> _List = [];
-  List<String> tempList;
-  var _Size;
+  List<String>? tempList;
+  late var _Size;
   var view;
-  double _ListHight;
+  late double _ListHight;
 
   TextEditingController _controller = TextEditingController();
 
@@ -77,7 +77,7 @@ class _MACTextFieldState extends State<AutoCompeleteTextField> {
           padding: EdgeInsets.only(top: 0),
           primary: true,
           itemBuilder: (context, indx) =>(widget.collapsed == null|| widget.collapsed == false) ? _NonCollapsed(SList, indx):_Collapsed(SList, indx)),
-      behavior: nonGlow(),
+      behavior: NonGlow(),
     );
   }
 
@@ -129,7 +129,7 @@ class _MACTextFieldState extends State<AutoCompeleteTextField> {
   }
   void _SuggestionsFilter(txtValue) {
     _List.clear();
-    for (var value in widget.suggestions) {
+    for (var value in widget.suggestions!) {
       if (txtValue != '' && _igonreCaseSenstivity(value,txtValue)) {
         _List.add(value);
         view = _SuggestionList(_List);
